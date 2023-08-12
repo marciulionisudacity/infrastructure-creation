@@ -10,7 +10,7 @@
        KeyName: test
        # Change this, as applicable to you
        # You may need to find out what instance types are available in your region - use https://cloud-images.ubuntu.com/locator/ec2/
-       ImageId: 'ami-031127284ff2ffa64' 
+       ImageId: 'ami-08a52ddb321b32a8c' 
        InstanceType: t3.micro
    InstanceSecurityGroup:
      Type: 'AWS::EC2::SecurityGroup'
