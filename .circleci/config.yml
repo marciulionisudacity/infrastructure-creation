@@ -4,25 +4,46 @@ orbs:
     aws-cli: circleci/aws-cli@2.0.3
 # Define the jobs we want to run for this project
 jobs:
-    build: 
-        docker:
-          - image: amazon/aws-cli 
-        steps:
-          - checkout # check out the code in the project directory
-          - run: echo "hello world" # run the `echo` command
+    # build: 
+    #     docker:
+    #       - image: amazon/aws-cli 
+    #     steps:
+    #       - checkout # check out the code in the project directory
+    #       - run: echo "hello world" # run the `echo` command
     
-    create_infrastructure:  
-        docker: 
-          - image: amazon/aws-cli 
-        steps: 
-          - checkout 
-          - run: 
-              name: Create Cloudformation Stack 
-              command: |
-                aws cloudformation deploy \
-                  --template-file template.yml \
-                  --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-                  --region us-east-1  
+    # create_infrastructure:  
+    #     docker: 
+    #       - image: amazon/aws-cli 
+    #     steps: 
+    #       - checkout 
+    #       - run: 
+    #           name: Create Cloudformation Stack 
+    #           command: |
+    #             aws cloudformation deploy \
+    #               --template-file template.yml \
+    #               --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+    #               --region us-east-1  
+    
+    configure_infrastructure:
+      docker: 
+        - image: python:3.7-alpine3.11
+
+      steps:
+        - checkout
+        - add_ssh_keys:
+          fingerprints: ["72:d1:84:3f:96:86:cf:68:a8:41:ac:c7:7a:94:44:8e"]  
+        - run: 
+          name: Install Ansible
+          command: | 
+            apk add --update ansible
+
+        - run:
+          name: Run Playbook and Configure server
+          command: |    
+            ansible-playbook -i inventory main.yml
+
+
+
 # Sequential workflow
 workflows:
     build-infra:
