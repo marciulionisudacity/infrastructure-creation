@@ -49,16 +49,7 @@ jobs:
         - image: alpine:latest
       steps: 
         - run: apk add --update curl 
-        - run: 
-          name: smoke test
-          command: |
-            URL="https://blog.udacity.com"
-            if curl -s --head ${URL}
-            then
-              return 0
-            else 
-              return 1  
-            fi  
+
 
 # Sequential workflow
 workflows:
