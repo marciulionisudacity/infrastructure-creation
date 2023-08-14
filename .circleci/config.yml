@@ -41,8 +41,6 @@ jobs:
             name: Run Playbook and Configure server
             command: |    
               ansible-playbook -i inventory main.yml
-            responses:
-              'Are you sure you want to continue connecting (yes/no)?' : 'y'  
 
 
 
