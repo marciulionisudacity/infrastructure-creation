@@ -31,16 +31,16 @@ jobs:
       steps:
         - checkout
         - add_ssh_keys:
-          fingerprints: ["72:d1:84:3f:96:86:cf:68:a8:41:ac:c7:7a:94:44:8e"]  
+            fingerprints: ["72:d1:84:3f:96:86:cf:68:a8:41:ac:c7:7a:94:44:8e"]  
         - run: 
-          name: Install Ansible
-          command: | 
-            apk add --update ansible
+            name: Install Ansible
+            command: | 
+              apk add --update ansible
 
         - run:
-          name: Run Playbook and Configure server
-          command: |    
-            ansible-playbook -i inventory main.yml
+            name: Run Playbook and Configure server
+            command: |    
+              ansible-playbook -i inventory main.yml
 
 
 
