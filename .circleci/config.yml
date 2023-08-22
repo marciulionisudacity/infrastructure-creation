@@ -77,7 +77,7 @@ jobs:
             name: simulate error
             command: |
               return 1
-        - destroy_environment
+        - destroy_environment:
             when: on_fail
             
 
