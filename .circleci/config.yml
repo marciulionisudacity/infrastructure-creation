@@ -77,13 +77,8 @@ jobs:
             name: simulate error
             command: |
               return 1
-        # - destroy_environment
-        #  when: on_fail
-        - run:
-            name: Run on fail status
-            command: |
-                echo "I am result of above failed job"
-            when: on_fail  
+        - destroy_environment
+            when: on_fail
             
 
 # Sequential workflow
