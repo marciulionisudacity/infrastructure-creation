@@ -80,10 +80,10 @@ jobs:
         # - destroy_environment
         #  when: on_fail
         - run:
-          name: Run on fail status
-          command: |
-              echo "I am result of above failed job"
-          when: on_fail  
+            name: Run on fail status
+            command: |
+                echo "I am result of above failed job"
+            when: on_fail  
             
 
 # Sequential workflow
