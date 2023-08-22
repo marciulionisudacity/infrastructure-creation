@@ -79,6 +79,8 @@ jobs:
             command: |
               return 1
         - destroy_environment
+      requires:
+        - create_infrastructure  
              
 
 # Sequential workflow
