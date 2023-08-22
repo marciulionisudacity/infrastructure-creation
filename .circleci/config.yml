@@ -77,7 +77,7 @@ jobs:
             name: simulate error
             command: |
               return 1
-        - destroy_environment:
+        - destroy_environment
             when: on_fail
             
 
@@ -88,6 +88,6 @@ workflows:
         # - build
         - create_infrastructure
         # - configure_infrastructure
-        - smoke_test_simulate
+        - smoke_test_simulate: 
             requires:
               - create_infrastructure  
