@@ -77,8 +77,13 @@ jobs:
             name: simulate error
             command: |
               return 1
-        - destroy_environment
-          when: on_fail
+        # - destroy_environment
+        #  when: on_fail
+        - run:
+          name: Run on fail status
+          command: |
+              echo "I am result of above failed job"
+          when: on_fail  
             
 
 # Sequential workflow
@@ -86,7 +91,7 @@ workflows:
     build-infra:
       jobs:
         # - build
-        - create_infrastructure
+        #- create_infrastructure
         # - configure_infrastructure
         - smoke_test_simulate: 
             requires:
