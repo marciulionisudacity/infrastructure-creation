@@ -93,6 +93,6 @@ workflows:
         # - build
         #- create_infrastructure
         # - configure_infrastructure
-        - smoke_test_simulate:
+        - smoke_test_simulate
             #requires:
             #  - create_infrastructure  
