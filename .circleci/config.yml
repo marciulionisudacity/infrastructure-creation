@@ -3,6 +3,13 @@ version: 2.1
 orbs:
     aws-cli: circleci/aws-cli@2.0.3
 # Define the jobs we want to run for this project
+commands: 
+  destroy_environment:
+    steps:
+      - run: 
+          name: Destroy environment
+          command: | 
+            aws cloudformation delete --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}
 jobs:
     build: 
         docker:
@@ -60,6 +67,18 @@ jobs:
                 return 1  
               fi  
 
+    smoke_test_simulate: 
+      docker: 
+        - image: amazon/aws-cli
+      steps: 
+        - checkout 
+        - run: 
+            name: simulate error
+            command: |
+              return 1  #simulated error 
+        - destroy_environment
+          when: on_fail                   
+
 # Sequential workflow
 workflows:
     build-infra:
@@ -67,4 +86,4 @@ workflows:
         # - build
         # - create_infrastructure
         # - configure_infrastructure
-        - smoke_test
+        - smoke_test_simulate
