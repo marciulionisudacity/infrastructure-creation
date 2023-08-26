@@ -86,7 +86,7 @@ jobs:
       steps:
         - checkout
         - run:
-            name: Execute bucket.yml - Create Cloudformation Stack
+            name: Execute bucket.yml
             command: |
               aws cloudformation deploy \
               --template-file bucket.yml \
